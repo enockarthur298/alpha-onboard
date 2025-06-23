@@ -47,19 +47,56 @@ export default function DashboardPage() {
 
 function WelcomeScreen() {
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 sm:p-12">
-        <div className="w-20 h-20 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-          <CheckCircle className="w-10 h-10 text-blue-600 dark:text-blue-400" />
+    <div className="max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      {/* Hero Section with Gradient Background */}
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-indigo-950 rounded-3xl shadow-2xl overflow-hidden">
+        <div className="grid md:grid-cols-5 gap-0">
+          {/* Content Column */}
+          <div className="md:col-span-3 p-8 sm:p-12 lg:p-16">
+            <div className="flex items-center mb-8">
+              <div className="w-14 h-14 bg-blue-600 dark:bg-blue-500 rounded-xl flex items-center justify-center shadow-lg">
+                <CheckCircle className="w-8 h-8 text-white" />
+              </div>
+              <div className="ml-4 px-4 py-1.5 bg-blue-100 dark:bg-blue-900/30 rounded-full text-sm font-medium text-blue-700 dark:text-blue-300">
+                Getting Started
+              </div>
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+              Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">AlphaOnboard</span>! 🎉
+            </h1>
+            
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-2xl">
+              Let's create your first onboarding flow to start managing clients efficiently and professionally.
+            </p>
+            
+            <Link 
+              href="/dashboard/flows/new" 
+              className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 md:py-5 md:text-lg md:px-10 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            >
+              Create New Onboarding Flow
+              <ArrowRight className="ml-2 -mr-1 w-5 h-5" />
+            </Link>
+          </div>
+          
+          {/* Visual Column with Decorative Elements */}
+          <div className="hidden md:block md:col-span-2 relative bg-gradient-to-br from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-800">
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-10 right-10 w-20 h-20 rounded-full bg-white/20"></div>
+              <div className="absolute bottom-20 left-10 w-32 h-32 rounded-full bg-white/10"></div>
+              <div className="absolute top-1/2 left-1/4 w-40 h-40 rounded-full bg-white/10"></div>
+              <svg className="absolute bottom-0 right-0" width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 0C155.228 0 200 44.7715 200 100C200 155.228 155.228 200 100 200C44.7715 200 0 155.228 0 100C0 44.7715 44.7715 0 100 0Z" fill="white" fillOpacity="0.1"/>
+              </svg>
+            </div>
+          </div>
         </div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-          Welcome to AlphaOnboard! 🎉
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-          Let's create your first onboarding flow to start managing clients efficiently.
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 mb-8 text-left">
+      </div>
+      
+      {/* Steps Section */}
+      <div className="mt-16 mb-12">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Three simple steps to get started</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <StepCard 
             number={1} 
             title="Create Flow" 
@@ -76,14 +113,6 @@ function WelcomeScreen() {
             description="Monitor your clients' progress and get notified when they complete tasks." 
           />
         </div>
-        
-        <Link 
-          href="/dashboard/flows/new" 
-          className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition-colors duration-200"
-        >
-          Create New Onboarding Flow
-          <ArrowRight className="ml-2 -mr-1 w-5 h-5" />
-        </Link>
       </div>
     </div>
   );
@@ -211,15 +240,13 @@ function DashboardMainView() {
 
 function StepCard({ number, title, description }) {
   return (
-    <div className="p-6 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
-      <div className="flex items-center">
-        <div className="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center font-medium text-blue-600 dark:text-blue-400">
+    <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700">
+      <div className="flex flex-col items-start">
+        <div className="flex-shrink-0 h-12 w-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center font-bold text-lg text-white mb-5 shadow-md">
           {number}
         </div>
-        <div className="ml-4">
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">{title}</h3>
-          <p className="mt-1 text-gray-600 dark:text-gray-400">{description}</p>
-        </div>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-400">{description}</p>
       </div>
     </div>
   );
