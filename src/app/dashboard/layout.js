@@ -42,12 +42,7 @@ export default function DashboardLayout({ children }) {
               href="/dashboard/flows" 
               active={pathname?.startsWith('/dashboard/flows')}
             />
-            <NavItem 
-              icon={<Users size={20} />} 
-              text="Clients" 
-              href="/dashboard/clients" 
-              active={isActive('/dashboard/clients')}
-            />
+
             <NavItem 
               icon={<Settings size={20} />} 
               text="Settings" 
