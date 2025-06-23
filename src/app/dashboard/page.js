@@ -5,17 +5,32 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle, Users, FileText, BarChart } from 'lucide-react';
 
 export default function DashboardPage() {
-  // For demo purposes, we'll show the welcome screen first
-  // In a real app, you would check if the user has any flows
+  // State to track loading status and user flows
   const [isLoading, setIsLoading] = useState(true);
+  const [hasFlows, setHasFlows] = useState(false);
 
   useEffect(() => {
-    // Simulate loading
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-    
-    return () => clearTimeout(timer);
+    // In a real app, you would fetch user flows from an API
+    // For now, we'll simulate an API call
+    const fetchUserFlows = async () => {
+      try {
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 800));
+        
+        // For demo purposes, let's randomly decide if user has flows
+        // In production, this would be determined by actual API data
+        // You can change this to true/false to test different views
+        const userHasFlows = false; // Change to true to see DashboardMainView
+        
+        setHasFlows(userHasFlows);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching flows:', error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchUserFlows();
   }, []);
 
   if (isLoading) {
@@ -26,8 +41,8 @@ export default function DashboardPage() {
     );
   }
 
-  // Always show the welcome screen for now
-  return <WelcomeScreen />;
+  // Conditionally render based on whether the user has flows
+  return hasFlows ? <DashboardMainView /> : <WelcomeScreen />;
 }
 
 function WelcomeScreen() {
